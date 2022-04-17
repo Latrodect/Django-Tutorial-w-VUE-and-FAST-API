@@ -1,0 +1,13 @@
+<html>
+    <head></head>
+    <body>
+        <h1 style="color:rgb(52, 52, 52); font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">This is a Article BLog</h1>
+        <form action='/articles/' method="GET">  
+            <input style="width: 400px;  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" type='text' name="q"/>
+            <input style=" border:none; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); background-color: orangered; padding:5 20 5 20; border-radius:5px; color:White" type='submit'/>
+        </form>
+        
+        {% block content%}
+        {% endblock content %}
+    </body>
+</html>

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content%}
+
+<h1 style="margin-top:5%; color:rgb(52, 52, 52); font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> Login Form</h1>
+{% if not request.user.is_authenticated %}
+<div >
+    <form method="POST">{% csrf_token %}
+       {{ form.as_p }}
+        <div style="margin-top:10px">
+            <button style=" border:none; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); background-color: orangered; padding:5 20 5 20; border-radius:5px; color:White" type="submit" name="submit"> Login </button>
+        </div>
+        <div>
+            <p>If you had an account. Are you want to <a style="text-decoration: none; color:orangered" href="/login/">login</a> ?</p>
+        </div>
+    </form>
+</div>
+{% else %}
+<p>You are already had an account. Are you want to <a style="text-decoration: none; color:orangered" href="/logout/">logout</a> ?</p>
+{% endif %}
+
+
+
+{% endblock content%}
