@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
+<ul style="list-style:none; ">
+{% for object in object_list %}
+{% if object.title %}
 
-{% if object %}
-<h1>{{ object.title }}</h1>
+<li><a style="color:orangered; text-decoration: none;"  href="{{ object.get_absolute_url }}" >{{ object.title }}</a></li>
 <br>
-<p>{{ object.content }}</p>
+<li><p>{{ object.content }}</p></li>
+<br>
+
+
 {% endif %}
+{% endfor %}
+</ul>
 {% endblock content %}
