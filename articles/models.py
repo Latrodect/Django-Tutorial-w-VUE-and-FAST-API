@@ -4,11 +4,13 @@ from django.db.models.signals import pre_save, post_save
 from django.utils import timezone
 from django.urls import reverse
 from django.db.models import Q
+from django.conf import settings
 
 from .utils import slugify_instance_title
 
 
 # Create your models here.
+User = settings.AUTH_USER_MODEL
 class ArticleQuerySet(models.QuerySet):
     def search(self, query=None):
         if query is None or query == "":
@@ -24,6 +26,7 @@ class ArticleManager(models.Manager):
         return self.get_queryset().search(query=query)
 
 class Article(models.Model):
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=220)
     slug = models.SlugField(null=True, blank=True)
     content = models.TextField()
