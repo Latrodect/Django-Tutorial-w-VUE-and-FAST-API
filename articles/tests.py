@@ -8,7 +8,7 @@ from django.utils.text import slugify
 
 class ArticleTestCase(TestCase):
     def setUp(self):
-        self.number_Of_Count = 5
+        self.number_Of_Count = 500
         for i in range(self.number_Of_Count):
             Article.objects.create(title='Article Test Case',
             content="Article Content Test")
@@ -23,8 +23,6 @@ class ArticleTestCase(TestCase):
     
     def test_unique_same_slug(self):
         qs = Article.objects.exclude(slug__iexact="article-test-case")
-        #obj = Article.objects.all().order_by("id").last()
-        #title = obj.title
         for obj in qs:
             title = obj.title
             slug = obj.slug
@@ -42,7 +40,7 @@ class ArticleTestCase(TestCase):
     def test_slugify_instance_title(self):
         obj = Article.objects.all().last()
         new_slugs = []
-        for i in range(0, 5):
+        for i in range(0, 500):
             instance = slugify_instance_title(obj, save=False)
             new_slugs.append(instance.slug)
         unique_slugs = list(set(new_slugs))
